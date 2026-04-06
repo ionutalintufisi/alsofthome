@@ -1,17 +1,26 @@
-# Folosește imagine oficială OpenJDK
+# Folosim imagine oficiala OpenJDK
 FROM openjdk:17-jdk-slim
 
-# Setează directorul de lucru
+# Setăm directorul de lucru
 WORKDIR /app
 
-# Copiază fișierele Maven/Gradle și codul
-COPY . .
+# Copiem fișierele necesare pentru build
+COPY gradlew .
+COPY gradle/ gradle/
+COPY build.gradle .
+COPY settings.gradle .
 
-# Build (Maven example)
-RUN ./mvnw clean package -DskipTests
+# Copiem tot codul sursă
+COPY src/ src/
 
-# Expune portul
+# Permisiuni pentru gradlew
+RUN chmod +x ./gradlew
+
+# Construim aplicația și ignorăm testele
+RUN ./gradlew bootJar -x test
+
+# Expunem portul (Render setează variabila PORT)
 EXPOSE 8080
 
-# Start serverul (ia fișierul .jar din target)
-CMD ["java", "-jar", "target/myapp.jar"]
+# Pornim aplicația
+CMD ["java", "-jar", "build/libs/myapp.jar"]
