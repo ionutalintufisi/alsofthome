@@ -13,11 +13,6 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class StripeController {
 
-    // ⚠️ pune cheia ta SECRET aici
-    static {
-        Stripe.apiKey = "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";
-    }
-
     @PostMapping("/create-payment-intent")
     public Map<String, String> createPaymentIntent(@RequestBody Map<String, Object> data) throws Exception {
 
