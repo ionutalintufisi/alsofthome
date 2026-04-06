@@ -39,3 +39,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// Dezactivăm jar-ul standard și folosim bootJar
+tasks.named('jar') {
+	enabled = false
+}
+
+tasks.named('bootJar') {
+	enabled = true
+	archiveFileName = 'be-application.jar' // FIX
+}
