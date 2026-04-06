@@ -39,4 +39,8 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+bootJar {
+    enabled = true
+}
+
 // force rebuild 1
