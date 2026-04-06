@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["jdk21", "gradle"]
+nixPkgs = ["jdk17", "gradle"]
 
 [phases.build]
 cmds = ["gradle build -x test"]
