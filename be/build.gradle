@@ -45,6 +45,10 @@ tasks.named('jar') {
 	enabled = false
 }
 
+bootJar {
+    enabled = true
+}
+
 tasks.named('bootJar') {
 	enabled = true
 	archiveFileName = 'be-application.jar' // FIX
