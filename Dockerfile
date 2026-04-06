@@ -1,26 +1,15 @@
-# Folosim imagine oficiala OpenJDK
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk
 
-# Setăm directorul de lucru
 WORKDIR /app
 
-# Copiem fișierele necesare pentru build
 COPY gradlew .
 COPY gradle/ gradle/
 COPY build.gradle .
 COPY settings.gradle .
-
-# Copiem tot codul sursă
 COPY src/ src/
 
-# Permisiuni pentru gradlew
 RUN chmod +x ./gradlew
-
-# Construim aplicația și ignorăm testele
 RUN ./gradlew bootJar -x test
 
-# Expunem portul (Render setează variabila PORT)
 EXPOSE 8080
-
-# Pornim aplicația
-CMD ["java", "-jar", "build/libs/myapp.jar"]
+CMD ["java", "-jar", "build/libs/alsofthome-0.0.1-SNAPSHOT.jar"]
