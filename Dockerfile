@@ -1,12 +1,12 @@
 FROM eclipse-temurin:17-jdk
 
-WORKDIR /app
+WORKDIR be/app
 
-COPY gradlew .
-COPY gradle/ gradle/
-COPY build.gradle .
-COPY settings.gradle .
-COPY src/ src/
+COPY be/gradlew .
+COPY be/gradle/ gradle/
+COPY be/build.gradle .
+COPY be/settings.gradle .
+COPY be/src/ src/
 
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar -x test
