@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StripeService {
 
-    @Value("${stripe.secret.key:}")
-    private String secretKey;
+    private final String secretKey = System.getenv("STRIPE_SECRET_KEY");
 
     //stripe -API
     //-> productName , amount , quantity , currency
